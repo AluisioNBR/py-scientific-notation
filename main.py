@@ -1,4 +1,5 @@
 from time import sleep 
+from science_notation import notationTOnumber
 
 msgs = [
 """=========================================
@@ -18,7 +19,16 @@ Qual operação deseja realizar ?
 """
       OPÇÃO INVÁLIDA!!
 
-Tente novamente..."""
+Tente novamente...""",
+
+"""
+Formatos de notação aceitos:
+2*10²
+2x10²
+2X10²
+
+Informe a notação:
+>>>>>>>>>> """
 ]
 
 print(msgs[0])
@@ -31,7 +41,7 @@ while True:
 
      elif op == 1:
           # Código...
-          print()
+          print(msgs[3])
      
      elif op == 2:
           # Código...
