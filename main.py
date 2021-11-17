@@ -1,5 +1,5 @@
 from time import sleep 
-from science_notation import notationTOnumber
+from scientific_notation import notationTOnumber
 
 msgs = [
 """=========================================
@@ -12,7 +12,8 @@ Qual operação deseja realizar ?
 
 1 - Notação científica >>>> Numérico
 2 - Numérico >>>> Notação científica
-3 - Sair
+3 - Como utilizar
+4 - Sair
 
 >>>>>>>>>> """,
 
@@ -22,11 +23,6 @@ Qual operação deseja realizar ?
 Tente novamente...""",
 
 """
-Formatos de notação aceitos:
-2*10²
-2x10²
-2X10²
-
 Informe a notação:
 >>>>>>>>>> """
 ]
@@ -36,7 +32,7 @@ print(msgs[0])
 while True:
      op = int(input(msgs[1]))
 
-     if op == 3:
+     if op == 4:
           break
 
      elif op == 1:
@@ -47,7 +43,11 @@ while True:
           # Código...
           print()
 
+     elif op == 3:
+          # Código...
+          print()
+
      else :
           print(msgs[2])
 
-print("\nEncerrando...\n", end=""); sleep(3)
+print("\nEncerrando...\n"); sleep(3)
