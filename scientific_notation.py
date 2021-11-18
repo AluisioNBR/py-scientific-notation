@@ -7,7 +7,7 @@ def notationTOnumber(notation = ""):
             err = "A notação está vazia, não posso prosseguir!"
             raise Exception(err)
 
-        if "+" in notation or "-" in notation or "/" in notation:
+        if "+" in notation or "/" in notation:
             err = "A notação não aceita adições, subtrações ou divisões, não posso prosseguir!"
             raise Exception(err)
         
@@ -58,62 +58,83 @@ def notationTOnumber(notation = ""):
                 err = "O multiplicador não é um número, não posso prosseguir!"
                 raise Exception(err)
 
-        base, exp = "", ""; char = notation[1][1]
-        if not char == "⁰" or char == "¹" or char == "²" or char == "³" or char == "⁴" or char == "⁵" or char == "⁶" or char == "⁷" or char == "⁸" or char == "⁹":
-            for char in notation[1]:
-                if char == "⁰":
-                    exp = exp + '0'
-                
-                elif char == "¹":
-                    exp = exp + '1'
-                
-                elif char == "²":
-                    exp = exp + '2'
-                
-                elif char == "³":
-                    exp = exp + '3'
-                
-                elif char == "⁴":
-                    exp = exp + '4'
-                
-                elif char == "⁵":
-                    exp = exp + '5'
-                
-                elif char == "⁶":
-                    exp = exp + '6'
-                
-                elif char == "⁷":
-                    exp = exp + '7'
-                
-                elif char == "⁸":
-                    exp = exp + '8'
-                
-                elif char == "⁹":
-                    exp = exp + '9'
-                    
+        base, exp = "", ""
+        if not notation[1][1] == "⁰" or not notation[1][1] == "¹" or not notation[1][1] == "²" or not notation[1][1] == "³" or not notation[1][1] == "⁴" or not notation[1][1] == "⁵" or not notation[1][1] == "⁶" or not notation[1][1] == "⁷" or not notation[1][1] == "⁸" or not notation[1][1] == "⁹":
+            for i in range(len(notation[1])):
+                char = notation[1][i]
+
+                if char == '-':
+                    if notation[1][i - 1] != "⁰" and notation[1][i - 1] != "¹" and notation[1][i - 1] != "²" and notation[1][i - 1] != "³" and notation[1][i - 1] != "⁴" and notation[1][i - 1] != "⁵" and notation[1][i - 1] != "⁶" and notation[1][i - 1] != "⁷" and notation[1][i - 1] != "⁸" and notation[1][i - 1] != "⁹":
+                        exp = exp + '-'
+
+                    elif notation[1][i + 1] != "⁰" and notation[1][i + 1] != "¹" and notation[1][i + 1] != "²" and notation[1][i + 1] != "³" and notation[1][i + 1] != "⁴" and notation[1][i + 1] != "⁵" and notation[1][i + 1] != "⁶" and notation[1][i + 1] != "⁷" and notation[1][i + 1] != "⁸" and notation[1][i + 1] != "⁹":
+                        base = base + '-'
+
                 else :
-                    base = base + char
+                    if char == "⁰":
+                        exp = exp + '0'
+                    
+                    elif char == "¹":
+                        exp = exp + '1'
+                    
+                    elif char == "²":
+                        exp = exp + '2'
+                    
+                    elif char == "³":
+                        exp = exp + '3'
+                    
+                    elif char == "⁴":
+                        exp = exp + '4'
+                    
+                    elif char == "⁵":
+                        exp = exp + '5'
+                    
+                    elif char == "⁶":
+                        exp = exp + '6'
+                    
+                    elif char == "⁷":
+                        exp = exp + '7'
+                    
+                    elif char == "⁸":
+                        exp = exp + '8'
+                    
+                    elif char == "⁹":
+                        exp = exp + '9'
+                        
+                    else :
+                        base = base + char
             
             base = base.strip()
-            exp = int(exp.strip())
-            
-            if base.isnumeric():
-                base = int(base)
+            exp = exp.strip()
+
+            condition1, condition2 = None, None
+            if base[0] == '-':
+                condition1 = base[1:].isnumeric()
             else :
-                err = "A base não é um número, não posso prosseguir!"
+                condition1 = base.isnumeric()
+            
+            if exp[0] == '-':
+                condition2 = exp[1:].isnumeric()
+            else:
+                condition2 = exp.isnumeric()
+
+            if condition1 and exp != '' and condition2:
+                base = float(base)
+                exp = int(exp)
+            else :
+                err = "A base, ou o expoente, não é um número, não posso prosseguir!"
                 raise Exception(err)
+
+            notation[1] = base
+            notation.append(exp)
 
 
         else :
             err = "Não existe base para exponenciação na notação, não posso prosseguir!"
             raise Exception(err)
-
-        print(f"{base},{exp}")
-        print(type(notation[1]))
-        print(notation)
     
+        result = notation[0] * (notation[1] ** notation[2])
+        return result
+
     except:
         print(err)
-
-""
-notationTOnumber('   2,7   *   10     ')

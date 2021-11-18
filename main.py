@@ -1,3 +1,4 @@
+from os import system
 from time import sleep 
 from scientific_notation import notationTOnumber
 
@@ -5,9 +6,7 @@ msgs = [
 """=========================================
      Conversor de Notação Científica
 =========================================
-""",
 
-"""
 Qual operação deseja realizar ?
 
 1 - Notação científica >>>> Numérico
@@ -24,30 +23,42 @@ Tente novamente...""",
 
 """
 Informe a notação:
->>>>>>>>>> """
+>>>>>>>>>> """,
+
+"""
+Informe o número
+>>>>>>>>>> """,
+
+"""
+========== Convertendo notações para números completos ==========
+"""
 ]
 
-print(msgs[0])
+system('clear')
 
 while True:
-     op = int(input(msgs[1]))
+     op = int(input(msgs[0]))
 
      if op == 4:
           break
 
      elif op == 1:
-          # Código...
-          print(msgs[3])
+          notation = input(msgs[2])
+          result = notationTOnumber(notation)
+
+          if result != None:
+               print(f"\nO resultado é: {result}")
      
      elif op == 2:
-          # Código...
-          print()
+          number = input(msgs[3])
 
      elif op == 3:
-          # Código...
-          print()
+          print(msgs[4])
 
      else :
-          print(msgs[2])
+          print(msgs[1])
+     
+     e = input('\nAperte Enter para prosseguir... ')
+     system('clear')
 
-print("\nEncerrando...\n"); sleep(3)
+print("\nEncerrando..."); sleep(3); system('clear')
