@@ -138,3 +138,43 @@ def notationTOnumber(notation = ""):
 
     except:
         print(err)
+
+def numberTOnotation(number = ""):
+    number = number.strip()
+    err = ""
+
+    try :
+        if number == '' or number.isalpha():
+            err = 'O número não existe, não posso prosseguir!'
+            raise Exception(err)
+
+        comma, exp, num = False, 0, ''
+        for i in range(len(number)):
+            char = number[i]
+
+            if char == ' ':
+                err = 'Existem espaços vazios no número, não posso prosseguir!'
+                raise Exception(err)
+            
+            elif char.isalpha():
+                err = 'Existem letras na expressão, não posso prosseguir!'
+                raise Exception(err)
+            
+            elif char == '0' and i != 0:
+                exp = exp + 1
+
+            else :
+                if num != '0' and num != '1' and num != '2' and num != '3' and num != '4' and num != '5' and num != '6' and num != '7' and num != '8' and num != '9' and not comma:
+                    num = num + '.'
+                    comma = True
+
+                if comma:
+                    exp = exp + 1
+
+                num = num + char
+
+        print(f"{num} x 10 > {exp}")
+    except :
+        print(err)
+
+numberTOnotation('0.10')
