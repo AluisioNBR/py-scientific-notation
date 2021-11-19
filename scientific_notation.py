@@ -164,11 +164,13 @@ def numberTOnotation(number = ""):
                 exp = exp + 1
 
             else :
-                if num != '0' and num != '1' and num != '2' and num != '3' and num != '4' and num != '5' and num != '6' and num != '7' and num != '8' and num != '9' and not comma:
-                    num = num + '.'
+                if (char != '0' and char != '1' and char != '2' and char != '3' and char != '4' and char != '5' and char != '6' and char != '7' and char != '8' and char != '9' or (i == 1)) and not comma:
+                    if (not '.' in number) and i == 1:
+                        num = num + '.'
+
                     comma = True
 
-                if comma:
+                if comma and (char == '1' or char == '2' or char == '3' or char == '4' or char == '5' or char == '6' or char == '7' or char == '8' or char == '9'):
                     exp = exp + 1
 
                 num = num + char
@@ -177,4 +179,4 @@ def numberTOnotation(number = ""):
     except :
         print(err)
 
-numberTOnotation('0.10')
+numberTOnotation('1500000')
